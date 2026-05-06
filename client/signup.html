@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Taskyfy — Sign Up</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="auth.css" />
+</head>
+<body class="auth-body">
+
+  <div class="auth-wrapper">
+
+    <div class="auth-card">
+
+      <div class="auth-brand">
+        <span class="brand-icon">✅</span>
+        <h1 class="brand-name">Taskyfy</h1>
+      </div>
+
+      <h2 class="auth-title">Create an account</h2>
+      <p class="auth-subtitle">Start managing your tasks today</p>
+
+      <div class="alert alert-error hidden" id="signupAlert"></div>
+
+      <form id="signupForm" novalidate>
+
+        <div class="form-group">
+          <label for="signupName">Full Name</label>
+          <input
+            type="text"
+            id="signupName"
+            placeholder="John Doe"
+            autocomplete="name"
+            maxlength="50"
+          />
+          <span class="field-error" id="nameErr"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="signupEmail">Email</label>
+          <input
+            type="email"
+            id="signupEmail"
+            placeholder="you@example.com"
+            autocomplete="email"
+          />
+          <span class="field-error" id="emailErr"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="signupPassword">Password</label>
+          <div class="input-wrap">
+            <input
+              type="password"
+              id="signupPassword"
+              placeholder="Min. 6 characters"
+              autocomplete="new-password"
+              maxlength="100"
+            />
+            <button type="button" class="toggle-pw" data-target="signupPassword" title="Show/hide password">
+              👁
+            </button>
+          </div>
+          <span class="field-error" id="pwErr"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <div class="input-wrap">
+            <input
+              type="password"
+              id="confirmPassword"
+              placeholder="Repeat your password"
+              autocomplete="new-password"
+            />
+            <button type="button" class="toggle-pw" data-target="confirmPassword" title="Show/hide password">
+              👁
+            </button>
+          </div>
+          <span class="field-error" id="confirmPwErr"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full" id="signupBtn">
+          <span id="signupBtnText">Create Account</span>
+        </button>
+
+      </form>
+
+      <p class="auth-switch">
+        Already have an account? <a href="login.html">Log in</a>
+      </p>
+
+    </div>
+
+    <button class="theme-btn auth-theme-btn" id="themeToggleBtn" title="Toggle dark mode">🌙</button>
+
+  </div>
+
+  <script src="auth.js"></script>
+</body>
+</html>

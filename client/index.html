@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Taskyfy — Task Manager</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="auth.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+</head>
+<body>
+
+  <!-- top nav bar -->
+  <header class="navbar">
+    <div class="navbar-brand">
+      <span class="brand-icon">✅</span>
+      <h1 class="brand-name">Taskyfy</h1>
+    </div>
+
+    <div class="navbar-right">
+      <!-- user chip — name + avatar initials -->
+      <div class="user-chip" id="userChip">
+        <div class="user-avatar" id="userAvatar">?</div>
+        <span class="user-name" id="userName">Loading...</span>
+      </div>
+
+      <button id="themeToggleBtn" class="theme-btn" title="Toggle dark mode">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+
+      <button class="btn-logout" id="logoutBtn" title="Log out">
+        <i class="fa-solid fa-right-from-bracket"></i> Logout
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- task creation form -->
+    <section class="form-section">
+      <h2 class="section-title">Add a New Task</h2>
+      <form id="taskForm" class="task-form" novalidate>
+        <div class="form-group">
+          <label for="taskTitle">Title <span class="required">*</span></label>
+          <input
+            type="text"
+            id="taskTitle"
+            name="taskTitle"
+            placeholder="What needs to be done?"
+            autocomplete="off"
+            maxlength="120"
+          />
+          <span class="field-error" id="titleError"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="taskDesc">Description <span class="optional">(optional)</span></label>
+          <textarea
+            id="taskDesc"
+            name="taskDesc"
+            placeholder="Add some details if needed..."
+            rows="3"
+            maxlength="500"
+          ></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" id="submitBtn">
+            <i class="fa-solid fa-plus"></i>
+            <span id="submitBtnText">Add Task</span>
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- task stats row -->
+    <section class="stats-bar">
+      <span class="stat-item">
+        Total: <strong id="statTotal">0</strong>
+      </span>
+      <span class="stat-item done-stat">
+        Done: <strong id="statDone">0</strong>
+      </span>
+      <span class="stat-item pending-stat">
+        Pending: <strong id="statPending">0</strong>
+      </span>
+    </section>
+
+    <!-- filter tabs -->
+    <div class="filter-tabs">
+      <button class="tab-btn active" data-filter="all">All</button>
+      <button class="tab-btn" data-filter="pending">Pending</button>
+      <button class="tab-btn" data-filter="completed">Completed</button>
+    </div>
+
+    <!-- task list area -->
+    <section class="task-list-section">
+      <div class="loader hidden" id="loader">
+        <div class="spinner"></div>
+        <p>Loading tasks...</p>
+      </div>
+
+      <div class="empty-state hidden" id="emptyState">
+        <span class="empty-icon">📋</span>
+        <p>No tasks here yet. Add one above!</p>
+      </div>
+
+      <ul class="task-list" id="taskList"></ul>
+    </section>
+
+  </main>
+
+  <!-- toast notification -->
+  <div class="toast hidden" id="toast">
+    <span id="toastMsg"></span>
+  </div>
+
+  <!-- edit modal -->
+  <div class="modal-overlay hidden" id="editModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Edit Task</h3>
+        <button class="modal-close" id="modalCloseBtn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="editTaskId" />
+        <div class="form-group">
+          <label for="editTitle">Title</label>
+          <input type="text" id="editTitle" maxlength="120" />
+          <span class="field-error" id="editTitleError"></span>
+        </div>
+        <div class="form-group">
+          <label for="editDesc">Description</label>
+          <textarea id="editDesc" rows="3" maxlength="500"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="modalCancelBtn">Cancel</button>
+        <button class="btn btn-primary" id="saveEditBtn">
+          <span id="saveEditBtnText">Save Changes</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
